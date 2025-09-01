@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  //without config
 };
+
+module.exports = {
+    images: {
+        remotePatterns: [new URL(`https://image.tmdb.org/t/p/original/**`)],
+    },
+}
 
 export default nextConfig;

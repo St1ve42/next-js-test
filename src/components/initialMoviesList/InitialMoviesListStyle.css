@@ -1,0 +1,12 @@
+.initial-movie-title{
+    font-weight: bold;
+    font-size: 30px;
+    color: #018AB6;
+    margin-bottom: 10px;
+    margin-left: 4px;
+}
+.movie-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px
+}
