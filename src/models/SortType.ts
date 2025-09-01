@@ -1,5 +1,5 @@
 export type SortType = {
-    [key: string]: string | null
-    option: string | null
-    direction: string | null
+    [key: string]: string | undefined
+    option: string | undefined
+    direction: string | undefined
 }

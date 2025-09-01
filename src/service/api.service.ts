@@ -3,6 +3,7 @@ import {GenreType} from "@/models/GenreType.ts";
 import {MovieDetailsType} from "@/models/MovieDetailsType.ts";
 import {ImageType} from "@/models/ImageType.ts";
 import {MovieVideoType} from "@/models/VideoType.ts";
+import {SortType} from "@/models/SortType.ts";
 
 const fetchOptions = {
     headers: {
@@ -39,9 +40,9 @@ export async function getGenres(){
     }
 }
 
-export async function getMoviesByGenre(id: number, page: number) {
+export async function getMoviesByGenre(id: number, page: number, sortParams: SortType) {
     try{
-        return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/discover/movie?with_genres=${id}&page=${page}`, fetchOptions).then(res => res.json()) as DataMovieType;
+        return await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/discover/movie?with_genres=${id}&page=${page}&sort_by=${sortParams?.option}.${sortParams?.direction}`, fetchOptions).then(res => res.json()) as DataMovieType;
     }
     catch(error) {
         console.log(error);

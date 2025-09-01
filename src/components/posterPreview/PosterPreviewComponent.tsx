@@ -10,6 +10,6 @@ type PropsType = {
 
 export const PosterPreviewComponent: FC<PropsType> = ({movie}) => {
     return (
-        <Image width={400} height={500} priority={true} src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title}/>
+        <Image width={400} height={400} className="h-auto w-auto" priority={true} src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={movie.title}/>
     );
 };

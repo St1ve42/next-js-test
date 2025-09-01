@@ -4,11 +4,11 @@ import {StarsRatingComponent} from "../starsRating/StarsRatingComponent.tsx";
 import {GenreBadgeComponent} from "../genreBadge/GenreBadgeComponent.tsx"
 import {Progress} from "../progressBar/ProgressBarComponent.tsx";
 import {BREAKPOINTS, COLOR_GENRES, getDate, SLIDES_PER_VIEW} from "@/utils/utils.ts";
-import image_not_found from '../../assets/image_not_found.jpg'
 import {STUB} from "@/utils/utils.ts";
 import {getMovieById, getMovieImages, getMovieVideos} from "@/service/api.service.ts";
 import Image from "next/image";
 import {SwiperComponent} from "@/components/swiper/SwiperComponent.tsx";
+import {ImageNotFoundComponent} from "@/components/imageNotFound/ImageNotFoundComponent.tsx";
 
 type PropsType = {
     movieId: number
@@ -23,7 +23,7 @@ export const MovieInfoComponent = async({movieId}: PropsType) => {
             <section>
                 <div className="mt-2 mb-4 flex gap-3 max-[946px]:flex-col max-[946px]:items-center">
                     <div className="mt-2">
-                        {movie?.poster_path ? <PosterPreviewComponent movie={movie}/> : <Image height={500} width={500} src={image_not_found} alt={"image not found"}/>}
+                        {movie?.poster_path ? <PosterPreviewComponent movie={movie}/> : <ImageNotFoundComponent/>}
                     </div>
                     <aside className="pl-5 ml-10 max-[946px]:self-center">
                         <div className="flex gap-5 max-[946px]:flex-col max-[946px]:mb-5">
@@ -46,8 +46,7 @@ export const MovieInfoComponent = async({movieId}: PropsType) => {
                 </div>
             </section>
             <section className="mt-7 mb-7">
-                {movieImages && <SwiperComponent array={movieImages?.slice(0, 8).map((image, index) => <Image key={index} width={250} height={250} src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt={image.file_path}/>)} slides_per_view={SLIDES_PER_VIEW} breakpoints={BREAKPOINTS}/>}
-                {/*max width 606 px; className="flex justify-between mt-7 mb-7 flex-wrap gap-5 max-[646px]:justify-center"*/}
+                {movieImages && <SwiperComponent array={movieImages?.slice(0, 8).map((image, index) => <Image key={index} width={250} height={250} className="h-auto w-auto" src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt={image.file_path}/>)} slides_per_view={SLIDES_PER_VIEW} breakpoints={BREAKPOINTS}/>}
             </section>
             {movieVideos && movieVideos.length!==0 && <iframe className="mb-10 max-[897px]:h-[320px]" width="100%" height="561" src={`https://www.youtube.com/embed/${movieVideos[0].key}`} title={`${movieVideos[0].name}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

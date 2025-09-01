@@ -4,8 +4,7 @@ import {PosterPreviewComponent} from "../posterPreview/PosterPreviewComponent.ts
 import type {MovieType} from "@/models/MovieType.ts";
 import type {FC} from "react";
 import {STUB} from "@/utils/utils.ts";
-import image_not_found from '../../assets/image_not_found.jpg'
-import Image from "next/image";
+import {ImageNotFoundComponent} from "@/components/imageNotFound/ImageNotFoundComponent.tsx";
 
 type PropsType = {
     mainMovie : MovieType;
@@ -26,7 +25,7 @@ export const MainMoviesListComponent: FC<PropsType> = ({mainMovie}) => {
                     <Link className="bg-blue-500 w-[120px] pt-2 pb-2 rounded-[2px]" href = {`/movie/${mainMovie.id}`}>Watch</Link>
                 </div>
                 <div className="m-auto w-[350px] max-[968px]:w-[0] max-[968px]:text-[10px]">
-                    {mainMovie.poster_path ? <PosterPreviewComponent movie={mainMovie}/> : <Image fill={true} src={image_not_found} alt={"image not found"}/>}
+                    {mainMovie.poster_path ? <PosterPreviewComponent movie={mainMovie}/> : <ImageNotFoundComponent/>}
                 </div>
             </div>
         </div>

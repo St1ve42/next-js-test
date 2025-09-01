@@ -3,9 +3,8 @@ import type {MovieType} from "@/models/MovieType.ts";
 import {PosterPreviewComponent} from "../posterPreview/PosterPreviewComponent.tsx";
 import './MoviesListCardStyle.css'
 import Link from "next/link";
-import image_not_found from "../../assets/image_not_found.jpg";
 import {getDate, STUB} from "@/utils/utils.ts";
-import Image from "next/image";
+import {ImageNotFoundComponent} from "@/components/imageNotFound/ImageNotFoundComponent.tsx";
 
 type propsType = {
     movie: MovieType
@@ -16,7 +15,7 @@ export const MovieListCardComponent: FC<propsType> = ({movie}) => {
         <Link href = {`/movie/${movie.id}`}>
             <div className="bg-black w-[200px] h-[404px] flex flex-col gap-1 card mb-2 m-auto">
                 <div className="w-[200px] h-[300px]">
-                    {movie.poster_path ? <PosterPreviewComponent movie={movie}/> : <Image width={300} height={400} src={image_not_found} alt={"image not found"}/>}
+                    {movie.poster_path ? <PosterPreviewComponent movie={movie}/> : <ImageNotFoundComponent/>}
                 </div>
                 <p className="ml-3 mb-1 max-w-[170px]">{movie.title ? movie.title : STUB}</p>
                 <p className="ml-3 mb-1">{release_date}</p>
